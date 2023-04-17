@@ -28,6 +28,7 @@ namespace AutonomousAgents
             SetDoubleBuffered(panel1);
             SetDoubleBuffered(panel2);
             SetDoubleBuffered(panel3);
+            SetDoubleBuffered(panel4);
             SetDoubleBuffered(tc);
 
             _width = panel1.Width;
@@ -141,7 +142,6 @@ namespace AutonomousAgents
         private void btn_start_2_Click(object sender, EventArgs e)
         {
             BtnStart(btn_start_2, btn_pause_2, timer_2, tb_input_2);
-            //BtnStartTwoTimers(btn_start_2, btn_pause_2, timer_2, timer_2_target, tb_input_2);
         }
 
         private void btn_pause_2_Click(object sender, EventArgs e)
@@ -251,6 +251,76 @@ namespace AutonomousAgents
             Refresh();
         }
 
+        // Tab4
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+            var g = e.Graphics;
+            ControlPaint.DrawBorder(g, panel1.ClientRectangle, Color.LightGray, ButtonBorderStyle.Solid);
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+
+            if (boids != null)
+            {
+                foreach (Boid boid in boids)
+                {
+                    var x = boid.Location.X;
+                    var y = boid.Location.Y;
+                    float angle = boid.Velocity.Heading() * 180 / PI;
+                    g.TranslateTransform(x, y);
+                    g.RotateTransform(angle + 90);
+                    g.TranslateTransform(-x, -y);
+                    g.FillTriangle(e, new PointF(x, y), 12);
+                    g.ResetTransform();
+
+                    if (_isDev)
+                    {
+                        g.DrawLine(Pens.Gray, new Point((int)boid.Location.X, (int)boid.Location.Y), new Point((int)boid.RedDotDraw.X, (int)boid.RedDotDraw.Y));
+                        g.DrawLine(Pens.Gray, new Point((int)boid.Location.X, (int)boid.Location.Y), new Point((int)boid.GreenDotDraw.X, (int)boid.GreenDotDraw.Y));
+                        DrawTarget(boid.RedDotDraw.X, boid.RedDotDraw.Y, boid.R * 2, g);
+                        g.FillEllipse(Brushes.Green, boid.GreenDotDraw.X - 4, boid.GreenDotDraw.Y - 4, 8, 8);
+                    }
+
+                }
+            }
+        }
+
+        private void panel4_MouseMove(object sender, MouseEventArgs e)
+        {
+            tb_mouse_4.Text = string.Format("X: {0} , Y: {1}", e.X, e.Y);
+        }
+
+
+        private void btn_start_4_Click(object sender, EventArgs e)
+        {
+            BtnStart(btn_start_4, btn_pause_4, timer_4, tb_input_4);
+        }
+
+        private void btn_pause_4_Click(object sender, EventArgs e)
+        {
+            BtnPause(btn_pause_4, timer_4);
+        }
+
+        private void btn_dev_4_Click(object sender, EventArgs e)
+        {
+            _isDev = !_isDev;
+        }
+
+        private void btn_edges_4_Click(object sender, EventArgs e)
+        {
+            _isEdge = !_isEdge;
+        }
+
+        private void timer_4_Tick(object sender, EventArgs e)
+        {
+            int edgeLimit = 0;
+            if (_isEdge)
+            {
+                edgeLimit = 100;
+            }
+            Wander(edgeLimit);
+            StayWithinWalls(edgeLimit);
+        }
+
 
         // Global functions
 
@@ -278,10 +348,13 @@ namespace AutonomousAgents
             btn_start_2.Text = "Start";
             btn_pause_2.Text = "Pause";
             btn_start_3.Text = "Start";
-            btn_pause_3.Text = "Pause";
+            btn_pause_3.Text = "Pause";            
+            btn_start_4.Text = "Start";
+            btn_pause_4.Text = "Pause";
             timer_1.Stop();
             timer_2.Stop();
             timer_3.Stop();
+            timer_4.Stop();
         }
 
         private void BtnStart(Button btn_start, Button btn_pause, System.Windows.Forms.Timer timer, TextBox tb_input)
@@ -329,7 +402,6 @@ namespace AutonomousAgents
             PropertyInfo? aProp = typeof(Control).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance);
             aProp?.SetValue(c, true, null);
         }
-
 
     }
 }

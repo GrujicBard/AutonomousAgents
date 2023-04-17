@@ -39,6 +39,7 @@
             tc = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            btn_edges_2 = new Button();
             btn_dev_2 = new Button();
             panel2 = new Panel();
             tb_mouse_2 = new TextBox();
@@ -54,14 +55,23 @@
             tb_input_3 = new TextBox();
             btn_start_3 = new Button();
             tabPage4 = new TabPage();
+            btn_edges_4 = new Button();
+            btn_dev_4 = new Button();
+            label4 = new Label();
+            tb_mouse_4 = new TextBox();
+            panel4 = new Panel();
+            btn_pause_4 = new Button();
+            tb_input_4 = new TextBox();
+            btn_start_4 = new Button();
             tabPage5 = new TabPage();
             timer_2 = new System.Windows.Forms.Timer(components);
             timer_3 = new System.Windows.Forms.Timer(components);
-            btn_edges_2 = new Button();
+            timer_4 = new System.Windows.Forms.Timer(components);
             tc.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -178,6 +188,16 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "2";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btn_edges_2
+            // 
+            btn_edges_2.Location = new Point(370, 17);
+            btn_edges_2.Name = "btn_edges_2";
+            btn_edges_2.Size = new Size(94, 29);
+            btn_edges_2.TabIndex = 14;
+            btn_edges_2.Text = "Edges";
+            btn_edges_2.UseVisualStyleBackColor = true;
+            btn_edges_2.Click += btn_edges_2_Click;
             // 
             // btn_dev_2
             // 
@@ -326,6 +346,14 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(btn_edges_4);
+            tabPage4.Controls.Add(btn_dev_4);
+            tabPage4.Controls.Add(label4);
+            tabPage4.Controls.Add(tb_mouse_4);
+            tabPage4.Controls.Add(panel4);
+            tabPage4.Controls.Add(btn_pause_4);
+            tabPage4.Controls.Add(tb_input_4);
+            tabPage4.Controls.Add(btn_start_4);
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
@@ -333,6 +361,87 @@
             tabPage4.TabIndex = 3;
             tabPage4.Text = "4";
             tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btn_edges_4
+            // 
+            btn_edges_4.Location = new Point(370, 17);
+            btn_edges_4.Name = "btn_edges_4";
+            btn_edges_4.Size = new Size(94, 29);
+            btn_edges_4.TabIndex = 19;
+            btn_edges_4.Text = "Edges";
+            btn_edges_4.UseVisualStyleBackColor = true;
+            btn_edges_4.Click += btn_edges_4_Click;
+            // 
+            // btn_dev_4
+            // 
+            btn_dev_4.Location = new Point(481, 17);
+            btn_dev_4.Name = "btn_dev_4";
+            btn_dev_4.Size = new Size(94, 29);
+            btn_dev_4.TabIndex = 18;
+            btn_dev_4.Text = "Dev";
+            btn_dev_4.UseVisualStyleBackColor = true;
+            btn_dev_4.Click += btn_dev_4_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(975, 20);
+            label4.Name = "label4";
+            label4.Size = new Size(138, 20);
+            label4.TabIndex = 17;
+            label4.Text = "Mouse coordinates:";
+            // 
+            // tb_mouse_4
+            // 
+            tb_mouse_4.BackColor = SystemColors.Control;
+            tb_mouse_4.Location = new Point(1119, 17);
+            tb_mouse_4.Name = "tb_mouse_4";
+            tb_mouse_4.Size = new Size(125, 27);
+            tb_mouse_4.TabIndex = 16;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = SystemColors.ControlLightLight;
+            panel4.Dock = DockStyle.Bottom;
+            panel4.ForeColor = SystemColors.ControlDarkDark;
+            panel4.Location = new Point(3, 54);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1248, 823);
+            panel4.TabIndex = 12;
+            panel4.Paint += panel4_Paint;
+            panel4.MouseMove += panel4_MouseMove;
+            // 
+            // btn_pause_4
+            // 
+            btn_pause_4.BackColor = SystemColors.Control;
+            btn_pause_4.ForeColor = SystemColors.ControlText;
+            btn_pause_4.Location = new Point(259, 17);
+            btn_pause_4.Name = "btn_pause_4";
+            btn_pause_4.Size = new Size(94, 29);
+            btn_pause_4.TabIndex = 15;
+            btn_pause_4.Text = "Pause";
+            btn_pause_4.UseVisualStyleBackColor = false;
+            btn_pause_4.Click += btn_pause_4_Click;
+            // 
+            // tb_input_4
+            // 
+            tb_input_4.ForeColor = SystemColors.WindowText;
+            tb_input_4.Location = new Point(8, 17);
+            tb_input_4.Name = "tb_input_4";
+            tb_input_4.Size = new Size(125, 27);
+            tb_input_4.TabIndex = 13;
+            // 
+            // btn_start_4
+            // 
+            btn_start_4.BackColor = SystemColors.Control;
+            btn_start_4.ForeColor = SystemColors.ControlText;
+            btn_start_4.Location = new Point(148, 17);
+            btn_start_4.Name = "btn_start_4";
+            btn_start_4.Size = new Size(94, 29);
+            btn_start_4.TabIndex = 14;
+            btn_start_4.Text = "Start";
+            btn_start_4.UseVisualStyleBackColor = false;
+            btn_start_4.Click += btn_start_4_Click;
             // 
             // tabPage5
             // 
@@ -354,15 +463,10 @@
             timer_3.Interval = 5;
             timer_3.Tick += timer_3_Tick;
             // 
-            // btn_edges_2
+            // timer_4
             // 
-            btn_edges_2.Location = new Point(370, 17);
-            btn_edges_2.Name = "btn_edges_2";
-            btn_edges_2.Size = new Size(94, 29);
-            btn_edges_2.TabIndex = 14;
-            btn_edges_2.Text = "Edges";
-            btn_edges_2.UseVisualStyleBackColor = true;
-            btn_edges_2.Click += btn_edges_2_Click;
+            timer_4.Interval = 10;
+            timer_4.Tick += timer_4_Tick;
             // 
             // Form1
             // 
@@ -381,6 +485,8 @@
             tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -415,5 +521,14 @@
         private System.Windows.Forms.Timer timer_3;
         private Button btn_dev_2;
         private Button btn_edges_2;
+        private Label label4;
+        private TextBox tb_mouse_4;
+        private Panel panel4;
+        private Button btn_pause_4;
+        private TextBox tb_input_4;
+        private Button btn_start_4;
+        private Button btn_edges_4;
+        private Button btn_dev_4;
+        private System.Windows.Forms.Timer timer_4;
     }
 }
