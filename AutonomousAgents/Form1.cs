@@ -275,7 +275,7 @@ namespace AutonomousAgents
             Refresh();
 
             //Show buttons
-            if (cb.SelectedIndex == 0 || cb.SelectedIndex == 2 | cb.SelectedIndex == 4)
+            if (cb.SelectedIndex == 0|| cb.SelectedIndex == 4)
             {
                 btn_walls.Visible = false;
             }
