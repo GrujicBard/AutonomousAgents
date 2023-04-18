@@ -136,7 +136,7 @@ namespace AutonomousAgents
 
             if (boids != null)
             {
-                if (cb.SelectedIndex == 0)
+                if (cb.SelectedIndex == 0 || cb.SelectedIndex == 3)
                 {
                     DrawTarget(_target.X, _target.Y, 50, g);
                 }
@@ -151,7 +151,7 @@ namespace AutonomousAgents
                     g.TranslateTransform(-x, -y);
                     g.FillTriangle(e, new PointF(x, y), 8);
                     g.ResetTransform();
-                    if (_isDev && (cb.SelectedIndex == 1 || cb.SelectedIndex == 3))
+                    if (_isDev && (cb.SelectedIndex == 1 || cb.SelectedIndex == 4))
                     {
                         g.DrawLine(Pens.Gray, new Point((int)boid.Location.X, (int)boid.Location.Y), new Point((int)boid.RedDotDraw.X, (int)boid.RedDotDraw.Y));
                         g.DrawLine(Pens.Gray, new Point((int)boid.Location.X, (int)boid.Location.Y), new Point((int)boid.GreenDotDraw.X, (int)boid.GreenDotDraw.Y));
@@ -170,7 +170,7 @@ namespace AutonomousAgents
             var y = e.Y;
 
             tb_mouse.Text = string.Format("X: {0} , Y: {1}", x, y);
-            if (cb.SelectedIndex == 0)
+            if (cb.SelectedIndex == 0 || cb.SelectedIndex == 3)
             {
                 _target.X = x;
                 _target.Y = y;
@@ -231,8 +231,7 @@ namespace AutonomousAgents
             switch (cb.SelectedIndex)
             {
                 case 0:
-                    Seperate(1.5f);
-                    SeekAndArrive(0.5f);
+                    SeekAndArrive();
                     break;
 
                 case 1:
@@ -240,15 +239,20 @@ namespace AutonomousAgents
                     break;
 
                 case 2:
-                    Seperate(1.5f);
+                    Seperate(3f);
                     break;
 
                 case 3:
                     Seperate(1.5f);
-                    Wander(edgeLimit, 0.5f);
+                    SeekAndArrive(0.5f);
                     break;
 
                 case 4:
+                    Seperate(1.5f);
+                    Wander(edgeLimit, 0.5f);
+                    break;
+
+                case 5:
                     Flock(1.2f, 1.0f, 1.5f);
                     break;
 
@@ -271,7 +275,7 @@ namespace AutonomousAgents
             Refresh();
 
             //Show buttons
-            if (cb.SelectedIndex == 0)
+            if (cb.SelectedIndex == 0 || cb.SelectedIndex == 2 | cb.SelectedIndex == 4)
             {
                 btn_walls.Visible = false;
             }
@@ -279,7 +283,7 @@ namespace AutonomousAgents
             {
                 btn_walls.Visible = true;
             }
-            if (cb.SelectedIndex == 1 || cb.SelectedIndex == 3)
+            if (cb.SelectedIndex == 1 || cb.SelectedIndex == 4)
             {
                 btn_dev.Visible = true;
             }

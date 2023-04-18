@@ -71,7 +71,7 @@
             // 
             cb.DropDownStyle = ComboBoxStyle.DropDownList;
             cb.FormattingEnabled = true;
-            cb.Items.AddRange(new object[] { "SeekAndArrive", "Wander", "Seperate", "Seperate+Wander", "Flock" });
+            cb.Items.AddRange(new object[] { "SeekAndArrive", "Wander", "Seperate", "Seperate+Seek", "Seperate+Wander", "Flock" });
             cb.Location = new Point(1095, 16);
             cb.Name = "cb";
             cb.Size = new Size(151, 28);

@@ -31,7 +31,7 @@ namespace AutonomousAgents
         public Boid(float x, float y)
         {
             Acceleration = new PVector(0, 0);
-            Velocity = new PVector(1, 0); // 0,0
+            Velocity = new PVector(0, 0); // 0,0
             Location = new PVector(x, y);
             R = 50;
             MaxSpeed = 4.0f;
