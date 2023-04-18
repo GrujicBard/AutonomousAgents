@@ -9,19 +9,18 @@ namespace AutonomousAgents
 {
     internal class PVector
     {
-        public float X { get; set; }
-        public float Y { get; set; }
+        public float X { get; set; } = 0;
+        public float Y { get; set; } = 0;
 
         const int WIDTH = 1248;
         const int HEIGHT = 823;
-        const float PI = (float)Math.PI;
-
 
         public PVector(float x, float y)
         {
             X = x;
             Y = y;
         }
+        public PVector() { }
 
         public void Add(PVector v)
         {
@@ -118,6 +117,18 @@ namespace AutonomousAgents
             return (float)(Math.Atan2(Y, X));
         }
 
+        public float Distance(PVector v)
+        {
+            PVector result = v.Copy();
+            result = Sub(result, this);
+            return result.Mag();
+
+        }
+
+        public static float Distance(PVector v1, PVector v2)
+        {
+            return v1.Distance(v2);
+        }
 
     }
 }
